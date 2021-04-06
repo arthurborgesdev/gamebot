@@ -2,8 +2,8 @@ require 'dotenv/load'
 require 'json'
 require 'telegram/bot'
 
-require_relative './guessing_game'
-require_relative './session'
+require_relative '../lib/guessing_game'
+require_relative '../lib/session'
 
 session = Session.new
 
