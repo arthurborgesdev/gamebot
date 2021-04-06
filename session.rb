@@ -6,9 +6,10 @@ class Session
   end
 
   def add(id, command)
-    session << [id, command]
+    session.push({id: id, command: command})
   end
 
-  def compare(id)
-  end 
+  def scan(id)
+    session.filter { |session| session[:id] == id }
+  end
 end

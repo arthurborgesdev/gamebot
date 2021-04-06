@@ -6,14 +6,13 @@ require_relative './guessing_game'
 require_relative './session'
 
 game = GuessingGame.new
-count = 0
-session = Session.new
 
 Telegram::Bot::Client.run(ENV['BOT_TOKEN']) do |bot|
+  session.push([message.chat.id, 'start', 0]) if scan(session, message.chat.id).empty?
   bot.listen do |message|     
     case message.text
     when '/start'  
-      
+      game.start(bot, message, message.chat.id)
     when 'a'..'z'  
       puts message
     when '/stop'
