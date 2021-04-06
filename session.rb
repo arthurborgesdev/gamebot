@@ -5,20 +5,24 @@ class Session
     @session = []
   end
 
-  def add(id, game_id, command)
-    session.push({id: id, game_id: game_id, command: command})
+  def add(id, game_id)
+    session.push({id: id, game_id: game_id})
   end
 
   def scan(id)
     session.filter { |session| session[:id] == id }
   end
 
-  def start?(id, command)
-    session.filter { |session| session[:id] == id }
-           .any? { |session| session[:command] == command} 
+  def start?(id)
+    session.any? { |session| session[:id] == id }
   end
 
-  def game_session(id)
-    session.filter { |session| session[:id] == id }.first[:game_id]
+  def retrieve(id)
+    game_session = session.find { |session| session[:id] == id }
+    game_session[:game_id]
+  end
+
+  def flush(id)
+    session.delete_if { |session| session[:id] == id }
   end
 end

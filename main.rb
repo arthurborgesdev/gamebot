@@ -11,17 +11,17 @@ Telegram::Bot::Client.run(ENV['BOT_TOKEN']) do |bot|
   bot.listen do |message|     
     case message.text
     when '/start'  
-      if session.start?(message.chat.id, 'start')
+      if session.start?(message.chat.id)
         bot.api.send_message(chat_id: message.chat.id, text: "You already started the game. Guess a letter or /stop")
       else
-        session.add(message.chat.id, GuessingGame.new, 'start') 
-        current_session = session.game_session(message.chat.id)
+        session.add(message.chat.id, GuessingGame.new) 
+        current_session = session.retrieve(message.chat.id)
         current_session.start(bot, message)
       end
     when 'a'..'z', 'A'..'Z'
-      if session.start?(message.chat.id, 'start')
-        current_session = session.game_session(message.chat.id)
-        current_session.guess(bot, message)
+      if session.start?(message.chat.id)
+        current_session = session.retrieve(message.chat.id)
+        current_session.guess(bot, message, session)
       end
     when '/stop'
       bot.api.send_message(chat_id: message.chat.id, 
