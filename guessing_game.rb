@@ -24,8 +24,14 @@ class GuessingGame
       text: "Please guess a word sending ONE letter a time") if msg.count("a-zA-Z") != 1
     
     if @word.include?(msg)
-      index = @word.index(msg)
-      guessed_word.map!.with_index { |letter, idx| index == idx ? msg : letter }
+      indices = []
+      @word.each_with_index { |letter, idx| indices << idx if letter == msg }
+      
+      guessed_word.each_with_index do |letter, idx|
+        indices.each do |chosen_idx|
+          chosen_idx == idx ? guessed_word[idx] = msg : guessed_word[idx] = letter
+        end  
+      end
 
       bot.api.send_message(chat_id: message.chat.id, 
         text: "You guessed right! \n#{guessed_word}"
