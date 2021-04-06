@@ -1,4 +1,4 @@
-class Session 
+class Session
   attr_reader :session
 
   def initialize
@@ -6,7 +6,7 @@ class Session
   end
 
   def add(id, game_id)
-    session.push({id: id, game_id: game_id})
+    session.push({ id: id, game_id: game_id })
   end
 
   def scan(id)
