@@ -1,9 +1,14 @@
 require 'dotenv/load'
-require 'uri'
-require 'net/http'
+require 'json'
+require 'telegram/bot'
 
-base_url = 'https://api.telegram.org/bot'
-
-uri = URI("#{base_url}#{ENV['BOT_TOKEN']}/getMe")
-res = Net::HTTP.get_response(uri)
-puts res.body if res.is_a?(Net::HTTPSuccess)
+Telegram::Bot::Client.run(ENV['BOT_TOKEN']) do |bot|
+  bot.listen do |message|
+    case message.text
+    when '/start'
+      bot.api.send_message(chat_id: message.chat.id, text: "Hello, #{message.from.first_name}")
+    when '/stop'
+      bot.api.send_message(chat_id: message.chat.id, text: "Bye, #{message.from.first_name}")
+    end
+  end
+end
