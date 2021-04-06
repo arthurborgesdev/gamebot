@@ -27,9 +27,9 @@ class GuessingGame
       indices = []
       @word.each_with_index { |letter, idx| indices << idx if letter == msg }
       
-      guessed_word.each_with_index do |letter, idx|
-        indices.each do |chosen_idx|
-          chosen_idx == idx ? guessed_word[idx] = msg : guessed_word[idx] = letter
+      indices.each do |chosen_idx|
+        guessed_word.map!.with_index do |letter, idx|
+          chosen_idx == idx ? msg : letter
         end  
       end
 
