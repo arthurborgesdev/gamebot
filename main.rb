@@ -28,7 +28,7 @@ Telegram::Bot::Client.run(ENV['BOT_TOKEN']) do |bot|
         text: "Bye, #{message.from.first_name}, start the game again typing /start"
       )
     else
-      bot.api.send_message(chat_id: message.chat.id, text: "I do not recognize this command, please try again!")
+      bot.api.send_message(chat_id: message.chat.id, text: "I do not recognize this command, please try again! Or type /start to init the game!")
     end  
   end
 end

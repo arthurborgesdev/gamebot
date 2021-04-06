@@ -23,7 +23,10 @@ class GuessingGame
     bot.api.send_message(chat_id: message.chat.id, 
       text: "Please guess a word sending ONE letter a time") if msg.count("a-zA-Z") != 1
     
-    if @word.include?(msg)
+    if guessed_word.include?(msg) 
+      bot.api.send_message(chat_id: message.chat.id, 
+        text: "Letter already sent, send another one!\n#{guessed_word}") 
+    elsif @word.include?(msg)
       indices = []
       @word.each_with_index { |letter, idx| indices << idx if letter == msg }
       
