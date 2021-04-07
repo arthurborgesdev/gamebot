@@ -21,9 +21,14 @@ GEM
     inflecto (0.0.2)
     jaro_winkler (1.5.4)
     multipart-post (2.1.1)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
     parallel (1.20.1)
     parser (3.0.1.0)
       ast (~> 2.4.1)
+    rack (2.2.3)
+    rack-protection (2.1.0)
+      rack
     rainbow (3.0.0)
     rexml (3.2.5)
     rubocop (0.81.0)
@@ -36,11 +41,17 @@ GEM
       unicode-display_width (>= 1.4.0, < 2.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.4)
+    sinatra (2.1.0)
+      mustermann (~> 1.0)
+      rack (~> 2.2)
+      rack-protection (= 2.1.0)
+      tilt (~> 2.0)
     telegram-bot-ruby (0.15.0)
       faraday
       inflecto
       virtus
     thread_safe (0.3.6)
+    tilt (2.0.10)
     unicode-display_width (1.7.0)
     virtus (1.0.5)
       axiom-types (~> 0.1)
@@ -54,6 +65,7 @@ PLATFORMS
 DEPENDENCIES
   dotenv
   rubocop (~> 0.81.0)
+  sinatra
   telegram-bot-ruby
 
 BUNDLED WITH
