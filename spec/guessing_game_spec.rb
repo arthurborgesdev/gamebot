@@ -18,4 +18,23 @@ describe GuessingGame do
       expect(word.size).to be == guessed_word.size
     end
   end
+
+  describe '#random_word' do
+    gg = GuessingGame.new
+    words = gg.instance_variable_get(:@words)
+    it 'picks a random word from array of words' do
+      expect(words).to include(gg.random_word.join)
+    end
+  end
+
+  describe '#replace_letters' do
+    gg = GuessingGame.new
+    word = gg.instance_variable_set(:@word, ["g", "i", "r", "l"])
+    guessed_word = [" _ ", " _ ", " _ ", " _ "]
+    it 'puts letters in the underline array' do
+      gg.replace_letters("g")
+      new_guessed_word = gg.instance_variable_get(:@guessed_word)
+      expect(new_guessed_word).to eql(["g", " _ ", " _ ", " _ "])
+    end
+  end
 end
