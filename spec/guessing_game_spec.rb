@@ -1,14 +1,13 @@
 require_relative '../lib/guessing_game'
 
 describe GuessingGame do
-
   describe '#intialize' do
-    gg = GuessingGame.new 
+    gg = GuessingGame.new
     words = gg.instance_variable_get(:@words)
     word = gg.instance_variable_get(:@word)
     guessed_word = gg.instance_variable_get(:@guessed_word)
     word_joined = word.join
-    it 'initializes an Array with at least one word' do 
+    it 'initializes an Array with at least one word' do
       expect(words.size).to be >= 1
     end
     it 'selects a random word from the existing array' do
@@ -29,12 +28,12 @@ describe GuessingGame do
 
   describe '#replace_letters' do
     gg = GuessingGame.new
-    word = gg.instance_variable_set(:@word, ["g", "i", "r", "l"])
-    guessed_word = [" _ ", " _ ", " _ ", " _ "]
+    gg.instance_variable_set(:@word, %w[g i r l])
+    gg.instance_variable_set(:@guessed_word, [' _ ', ' _ ', ' _ ', ' _ '])
     it 'puts letters in the underline array' do
-      gg.replace_letters("g")
+      gg.replace_letters('g')
       new_guessed_word = gg.instance_variable_get(:@guessed_word)
-      expect(new_guessed_word).to eql(["g", " _ ", " _ ", " _ "])
+      expect(new_guessed_word).to eql(['g', ' _ ', ' _ ', ' _ '])
     end
   end
 end
