@@ -15,7 +15,7 @@ class Session
 
   def retrieve(id)
     game_session = session.find { |session| session[:id] == id }
-    return game_session[:game_id] if game_session
+    game_session[:game_id] if game_session
   end
 
   def flush(id)
