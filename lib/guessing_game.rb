@@ -33,7 +33,7 @@ class GuessingGame
       won?(bot, message, session)
     else
       bot.api.send_message(chat_id: message.chat.id,
-                           text: 'You guessed wrong! Try again!')
+                           text: "You guessed wrong! Try again!\n#{guessed_word}")
     end
   end
 
