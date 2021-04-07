@@ -9,17 +9,13 @@ class Session
     session.push({ id: id, game_id: game_id })
   end
 
-  def scan(id)
-    session.filter { |session| session[:id] == id }
-  end
-
   def start?(id)
     session.any? { |session| session[:id] == id }
   end
 
   def retrieve(id)
     game_session = session.find { |session| session[:id] == id }
-    game_session[:game_id]
+    return game_session[:game_id] if game_session
   end
 
   def flush(id)
