@@ -21,7 +21,7 @@
 - Dotenv
 - KolourPain
 - Ubuntu 20.04
-- Heroku
+- Heroku 
 
 ## Live Demo
 
